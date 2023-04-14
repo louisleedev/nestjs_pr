@@ -8,6 +8,11 @@ export class UserService {
     constructor(@InjectModel(userInfo.name) private userInfoModel: Model<userInfo>) { }
 
     getAllUserInfo(): Promise<any> {
-        return this.userInfoModel.find({ name: "louis" }).exec();
+        return this.userInfoModel.find().exec();
+    }
+
+    createNewAccount(newUser: any){
+        const user = new this.userInfoModel(newUser)
+        return user.save()
     }
 }
